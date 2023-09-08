@@ -1,0 +1,75 @@
+USER TABLE 
+create table M_user(
+    user_id serial primary key,
+    user_name varchar(70),
+    user_cadte date,
+    user_type varchar(10),
+    user_pwd varchar(60),
+    user_email varchar(60),
+    user_recoveryemail varchar(60),
+    user_mobile varchar(10)
+)
+
+
+
+UserSessionTable
+create table M_usersessions(
+    ussn_id serial primary key,
+    user_id int references M_user(user_id),
+    ussn_sessionid varchar(20),
+    ussn_cadte date,
+    ussn_key varchar(20),
+    ussn_host varchar(20),
+    ussn_expdate date,
+    ussn_status varchar(5)
+)
+
+
+
+Roles Table
+create table M_roles(
+	role_id serial primary key,
+    role_name varchar(20),
+    role_desc varchar(200)
+)
+
+
+Privileges Table
+create table M_privileges(
+	priv_id serial primary key,
+    priv_name varchar(20),
+    priv_rpattern varchar(200)
+)
+
+
+
+RolePrivilegesTable
+create table M_roleprivileges(
+    role_id int,
+    priv_id int,
+    primary key(role_id,priv_id)
+)
+
+
+
+UserRoles Table
+create table M_userroles(
+    user_id int,
+    role_id int,
+    primary key(user_id,role_id)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
